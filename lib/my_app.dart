@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter/services.dart';
 
 import 'package:smash/screens/splash.dart';
 
-const kAppPrimaryColor =
-    Color.fromARGB(255, 0, 184, 212); // Turquoise-Blue (Logo Color)
+const kAppPrimaryColor = Color(0xFF0A3159); // Turquoise-Blue (Logo Color)
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+
     // To make it fixed portrait
     // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     return MaterialApp(
-      title: 'Padel SMASH',
+      title: 'Smash',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color.fromRGBO(0, 184, 212, 1),
@@ -22,17 +23,16 @@ class MyApp extends StatelessWidget {
           onPrimary: Colors.white,
         ),
         primarySwatch: Colors.teal,
-        primaryColor: kAppPrimaryColor, // Setting primary color for the app
+        primaryColor: kAppPrimaryColor,
         appBarTheme: const AppBarTheme(
-          color: kAppPrimaryColor, // Setting primary color to app bar
-          iconTheme:
-              IconThemeData(color: Colors.white), // White icons in the app bar
+          color: kAppPrimaryColor,
+          iconTheme: IconThemeData(color: Colors.white),
           titleTextStyle: TextStyle(
-            color: Colors.white, // White text on app bar
+            color: Colors.white,
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
-          toolbarHeight: 80, // Adjusting the height of the app bar
+          toolbarHeight: 70,
         ),
         textTheme: const TextTheme(
           headlineLarge: TextStyle(color: Colors.white),

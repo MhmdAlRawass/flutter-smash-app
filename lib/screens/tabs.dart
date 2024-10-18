@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -35,7 +36,7 @@ class _TabsScreenState extends State<TabsScreen> {
     }
     return Scaffold(
       extendBodyBehindAppBar: _bodyOverAppBar,
-
+      drawerDragStartBehavior: DragStartBehavior.start,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(55),
         child: TabsAppBar(
@@ -49,14 +50,34 @@ class _TabsScreenState extends State<TabsScreen> {
       ),
 
       drawer: DrawerTabs(
+        //Added to GIt
         onPressedBooking: () {
           setState(() {
             _selectedPage = 1;
           });
         },
       ),
-      body: _screens[
-          _selectedPage], // Use the correct screen based on _selectedPage
+      body: Stack(
+        children: [
+          _screens[_selectedPage],
+          Align(
+            alignment: Alignment.topLeft,
+            child: Container(
+              margin: EdgeInsets.only(top: AppBar().preferredSize.height),
+              width: MediaQuery.of(context).size.width / 1.5,
+              height: MediaQuery.of(context).size.height,
+              // child:
+              //  DrawerTabs(
+              //   onPressedBooking: () {
+              //     setState(() {
+              //       _selectedPage = 1;
+              //     });
+              //   },
+              // ),
+            ),
+          ),
+        ],
+      ), // Use the correct screen based on _selectedPage
       bottomNavigationBar: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,

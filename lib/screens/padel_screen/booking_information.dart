@@ -14,53 +14,52 @@ class BookingInformation extends StatelessWidget {
           onPressedBackward: () {},
         ),
       ),
-      body: SingleChildScrollView(
-        child: Expanded(
-          child: Padding(
-            padding: const EdgeInsets.all(12),
-            child: Column(
-              children: [
-                const WarningMessage(),
-                // Details Screen
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                  child: Card(
-                    elevation: 3,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        children: [
-                          buildDetailRow('Date: ', '12/18/22'),
-                          buildDetailRow('Schedule: ', '8 - 9 AM'),
-                          buildDetailRow('Booking No: ', '452856965',
-                              isLink: true),
-                          buildDetailRow(
-                              'Description: ', 'Booking at Smash Padel Court'),
-                          buildDetailRow('Details: ', 'Name + 3'),
-                        ],
-                      ),
+      body: Padding(
+        padding: const EdgeInsets.all(12),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const WarningMessage(),
+              // Details Screen
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                child: Card(
+                  elevation: 3,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      children: [
+                        buildDetailRow('Date: ', '12/18/22'),
+                        buildDetailRow('Schedule: ', '8 - 9 AM'),
+                        buildDetailRow('Booking No: ', '452856965',
+                            isLink: true),
+                        buildDetailRow(
+                            'Description: ', 'Booking at Smash Padel Court'),
+                        buildDetailRow('Details: ', 'Name + 3'),
+                      ],
                     ),
                   ),
                 ),
+              ),
 
-                // Action Buttons Wrap
-                Wrap(
-                  spacing: 10,
-                  runSpacing: 10,
-                  children: [
-                    buildActionButton(
-                        Icons.call, 'CALL CENTER', () {}, context, false),
-                    buildActionButton(Icons.calendar_month_outlined,
-                        'ADD TO CALENDAR', () {}, context, false),
-                    buildActionButton(Icons.delete_outline, 'CANCEL BOOKING',
-                        () {}, context, true),
-                  ],
-                ),
-              ],
-            ),
+              // Action Buttons Wrap
+              Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                alignment: WrapAlignment.center,
+                children: [
+                  buildActionButton(
+                      Icons.call, 'CALL CENTER', () {}, context, false),
+                  buildActionButton(Icons.calendar_month_outlined,
+                      'ADD TO CALENDAR', () {}, context, false),
+                  buildActionButton(Icons.delete_outline, 'CANCEL BOOKING',
+                      () {}, context, true),
+                ],
+              ),
+            ],
           ),
         ),
       ),
@@ -148,14 +147,20 @@ Widget buildActionButton(
   BuildContext context,
   bool isDelete,
 ) {
+  // Calculate button size based on screen width
+  double screenWidth = MediaQuery.of(context).size.width;
+  double buttonWidth =
+      screenWidth * 0.25; // Adjust width dynamically based on screen size
+  double buttonHeight =
+      buttonWidth * 0.67; // Maintain aspect ratio for the button
+
   return InkWell(
     onTap: onPressed,
     borderRadius: BorderRadius.circular(16),
     child: Container(
-      width: 120,
-      height: 80,
+      width: buttonWidth, // Dynamic width
+      height: buttonHeight, // Dynamic height
       padding: const EdgeInsets.symmetric(
-        // vertical: 8,
         horizontal: 8,
       ),
       decoration: BoxDecoration(
@@ -172,7 +177,7 @@ Widget buildActionButton(
         children: [
           Icon(
             icon,
-            size: 22,
+            size: buttonHeight * 0.25, // Adjust icon size based on height
             color:
                 isDelete ? Colors.red : Theme.of(context).colorScheme.primary,
           ),
@@ -183,7 +188,7 @@ Widget buildActionButton(
             softWrap: true,
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 11,
+              fontSize: buttonHeight * 0.15, // Adjust text size dynamically
               color: isDelete ? Colors.red : Colors.grey,
             ),
           ),

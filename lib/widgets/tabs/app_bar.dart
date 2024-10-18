@@ -26,6 +26,12 @@ class _TabsAppBarState extends State<TabsAppBar> {
         icon: const Icon(Icons.arrow_back),
       );
     }
+    //  else {
+    //   icon = IconButton(
+    //     onPressed: () {},
+    //     icon: const Icon(Icons.format_list_bulleted_rounded),
+    //   );
+    // }
 
     return Stack(
       fit: StackFit.expand,

@@ -81,6 +81,7 @@ flutter:
     - lib/assets/images/background.webp
     - lib/assets/images/padel_booking.webp
     - lib/assets/images/launcher_icon.png
+    - lib/assets/images/images-slider/tournament.jpg
 
     # Icons
     - lib/assets/icons/padel.webp

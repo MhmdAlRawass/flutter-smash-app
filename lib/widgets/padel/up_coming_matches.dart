@@ -10,7 +10,7 @@ class UpComingMatches extends StatelessWidget {
     bool isBooked = true;
 
     Widget activeCard = SizedBox(
-      height: 230,
+      height: 180,
       width: double.infinity,
       child: Card(
         elevation: 4,
@@ -75,7 +75,8 @@ class UpComingMatches extends StatelessWidget {
           );
         },
         child: Container(
-          padding: const EdgeInsets.all(12),
+          height: 180,
+          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
           decoration: BoxDecoration(
             image: const DecorationImage(
               image: AssetImage(
@@ -87,14 +88,14 @@ class UpComingMatches extends StatelessWidget {
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                 'UserName... ',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onPrimary,
-                  fontSize: 30,
+                  fontSize: 24,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -111,12 +112,9 @@ class UpComingMatches extends StatelessWidget {
                     'Padel',
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onPrimary,
-                      fontSize: 28,
+                      fontSize: 22,
                       fontWeight: FontWeight.w400,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 12,
                   ),
                 ],
               ),
@@ -133,13 +131,10 @@ class UpComingMatches extends StatelessWidget {
                     '$specificDayName ${specificDayOfMonth.toString()} | $startTime - $endTimeFormatted',
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onPrimary,
-                      fontSize: 20,
+                      fontSize: 18,
                     ),
                   ),
                 ],
-              ),
-              const SizedBox(
-                height: 4,
               ),
               Row(
                 children: [
@@ -156,7 +151,7 @@ class UpComingMatches extends StatelessWidget {
                     '${price.toStringAsFixed(2)} \$',
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onPrimary,
-                      fontSize: 20,
+                      fontSize: 18,
                     ),
                   ),
                 ],
@@ -181,7 +176,7 @@ class UpComingMatches extends StatelessWidget {
                   'Upcoming Matches',
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
-                    fontSize: 20,
+                    fontSize: 18,
                   ),
                 ),
               ),

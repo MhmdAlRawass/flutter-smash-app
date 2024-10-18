@@ -66,7 +66,13 @@ class _UserScreenState extends State<UserScreen> {
                   color: Theme.of(context).colorScheme.primary,
                 ),
                 value: 'tester@test.com',
-              )
+              ),
+              Image.asset(
+                'lib/assets/images/padel_booking.webp',
+                width: 0,
+                height: 0,
+                
+              ),
             ],
           ),
         ),

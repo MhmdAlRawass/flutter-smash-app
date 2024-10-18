@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:smash/screens/sign_up.dart';
 import 'package:smash/widgets/login/button_fields.dart';
 import 'package:smash/widgets/login/input_fields.dart';
@@ -53,9 +54,6 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: const Color(0xFF041AAA),
-
-      //  Theme.of(context).colorScheme.primaryFixedDim,
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -69,16 +67,12 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Form(
               child: SingleChildScrollView(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
                       'lib/assets/images/logo.webp',
                       width: double.infinity,
-                      // height: 250,
                     ),
-                    // const SizedBox(
-                    //   height: 32,
-                    // ),
                     InputFieldLogin(
                       title: 'Email',
                       icon: const Icon(Icons.account_circle_outlined),
@@ -175,7 +169,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         }
                       },
                       text: 'SIGN UP!',
-                    )
+                    ),
+                    const SizedBox(
+                      height: 36,
+                    ),
                   ],
                 ),
               ),

@@ -7,7 +7,7 @@ class ImageSlider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<String> imageList = [
-      'lib/assets/images/logo.webp',
+      'lib/assets/images/images-slider/tournament.jpg',
       'lib/assets/images/background.webp',
       'lib/assets/images/launcher_icon.png',
     ];
@@ -49,7 +49,7 @@ class ImageSlider extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15.0), // Rounded corners
                 child: Image.asset(
                   image,
-                  fit: BoxFit.cover, // Ensures the image covers the container
+                  fit: BoxFit.fill, // Ensures the image covers the container
                 ),
               ),
             );

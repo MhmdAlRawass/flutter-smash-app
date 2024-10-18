@@ -24,13 +24,26 @@ class _InfoContactScreenState extends State<InfoContactScreen> {
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.all(12),
-          child: const Column(
+          child: Column(
             children: [
-              Info(),
-              SizedBox(
-                height: 12,
+              const Info(),
+              const SizedBox(
+                height: 16,
               ),
-              Location(),
+              Container(
+                alignment: Alignment.topLeft,
+                child: const Text(
+                  'Location',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 4,
+              ),
+              const Location(),
             ],
           ),
         ),
