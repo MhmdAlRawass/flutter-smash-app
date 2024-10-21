@@ -44,6 +44,7 @@ dependencies:
   flutter_map: ^7.0.2
   latlong2: ^0.9.1
   url_launcher: ^6.1.10
+  permission_handler: ^11.3.1
 
 dev_dependencies:
   flutter_test:
@@ -89,8 +90,10 @@ flutter:
     - lib/assets/icons/calendar.webp
     - lib/assets/icons/tennis-court.webp
     - lib/assets/icons/email.png
+    - lib/assets/icons/route.webp
     - lib/assets/icons/gender.png
     - lib/assets/icons/birthdate.png
+    - lib/assets/icons/user.webp
 
     # Animations
     - lib/assets/animations/padel-splash.json

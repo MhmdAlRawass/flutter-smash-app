@@ -19,6 +19,8 @@ class _InfoContactScreenState extends State<InfoContactScreen> {
         child: TabsAppBar(
           page: 0,
           onPressedBackward: () {},
+          onPressedDrawer: () {},
+          isSubPage: true,
         ),
       ),
       body: SingleChildScrollView(

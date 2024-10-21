@@ -15,18 +15,23 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    precacheImage(const AssetImage('lib/assets/images/bg_login.webp'), context);
+    precacheImage(const AssetImage('lib/assets/images/logo.webp'), context);
 
     Future.delayed(
       const Duration(seconds: 3),
       () {
         // ignore: use_build_context_synchronously
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (ctx) {
+          PageRouteBuilder(
+            pageBuilder: (ctx, animation1, animation2) {
               return const ChooseScreen();
             },
+            transitionDuration: Duration.zero,
+            reverseTransitionDuration: Duration.zero,
           ),
         );
       },

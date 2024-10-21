@@ -17,114 +17,119 @@ class DrawerTabs extends StatefulWidget {
 class _DrawerTabsState extends State<DrawerTabs> {
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      child: Container(
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.primary.withOpacity(0.05),
-        ),
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            // Drawer Header with profile information
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                // color: Theme.of(context).colorScheme.primary,
-                image: DecorationImage(
-                  image: AssetImage('lib/assets/images/background.webp'),
-                  fit: BoxFit.cover,
+    return Container(
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.primary.withOpacity(0.05),
+      ),
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          // Drawer Header with profile information
+          const DrawerHeader(
+            decoration: BoxDecoration(
+              // color: Theme.of(context).colorScheme.primary,
+              image: DecorationImage(
+                image: AssetImage('lib/assets/images/background.webp'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Row(
+              children: [
+                CircleAvatar(
+                  radius: 30.0,
+                  backgroundImage: AssetImage('assets/profile.jpg'),
                 ),
-              ),
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    radius: 30.0,
-                    backgroundImage: AssetImage('assets/profile.jpg'),
-                  ),
-                  SizedBox(width: 16),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Name ...',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
+                SizedBox(width: 16),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Name ...',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
                       ),
-                      SizedBox(height: 4),
-                      Text(
-                        'Email ...',
-                        style: TextStyle(
-                          color: Colors.white70,
-                          fontSize: 14,
-                        ),
+                    ),
+                    SizedBox(height: 4),
+                    Text(
+                      'Email ...',
+                      style: TextStyle(
+                        color: Colors.white70,
+                        fontSize: 14,
                       ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            // Modern list items
-            _buildDrawerItem(
-              context,
-              icon: Icons.add_alert_outlined,
-              text: 'Alert',
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (ctx) {
-                      return const AlertScreen();
-                    },
-                  ),
-                );
-              },
-            ),
-            _buildDrawerItem(
-              context,
-              icon: Icons.newspaper,
-              text: 'News',
-              onTap: () {},
-            ),
-            _buildDrawerItem(
-              context,
-              imageIcon: ImageIcon(
-                const AssetImage(
-                  'lib/assets/icons/padel.webp',
+                    ),
+                  ],
                 ),
-                color: Theme.of(context).colorScheme.onSurface,
+              ],
+            ),
+          ),
+          // Modern list items
+          _buildDrawerItem(
+            context,
+            icon: Icons.add_alert_outlined,
+            text: 'Alert',
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (ctx) {
+                    return const AlertScreen();
+                  },
+                ),
+              );
+            },
+          ),
+          _buildDrawerItem(
+            context,
+            icon: Icons.newspaper,
+            text: 'News',
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (ctx) {
+                    return const AlertScreen();
+                  },
+                ),
+              );
+            },
+          ),
+          _buildDrawerItem(
+            context,
+            imageIcon: ImageIcon(
+              const AssetImage(
+                'lib/assets/icons/padel.webp',
               ),
-              text: 'Booking',
-              onTap: () {
-                Navigator.of(context).pop();
-                widget.onPressedBooking();
-              },
+              color: Theme.of(context).colorScheme.onSurface,
             ),
-            _buildDrawerItem(
-              context,
-              icon: Icons.info_outline,
-              text: 'Info | Contact',
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (ctx) {
-                      return const InfoContactScreen();
-                    },
-                  ),
-                );
-              },
-            ),
-            const Divider(),
-            _buildDrawerItem(
-              context,
-              icon: Icons.logout_outlined,
-              text: 'Logout',
-              onTap: () {},
-              color: Colors.redAccent,
-            ),
-          ],
-        ),
+            text: 'Booking',
+            onTap: () {
+              widget.onPressedBooking();
+            },
+          ),
+          _buildDrawerItem(
+            context,
+            icon: Icons.info_outline,
+            text: 'Info | Contact',
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (ctx) {
+                    return const InfoContactScreen();
+                  },
+                ),
+              );
+            },
+          ),
+          const Divider(),
+          _buildDrawerItem(
+            context,
+            icon: Icons.logout_outlined,
+            text: 'Logout',
+            onTap: () {},
+            color: Colors.redAccent,
+          ),
+        ],
       ),
     );
   }

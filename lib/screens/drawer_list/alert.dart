@@ -12,6 +12,8 @@ class AlertScreen extends StatelessWidget {
         child: TabsAppBar(
           page: 0,
           onPressedBackward: () {},
+          onPressedDrawer: () {},
+          isSubPage: true,
         ),
       ),
       body: const Center(

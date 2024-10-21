@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:smash/screens/padel_screen/booking_information.dart';
+import 'package:smash/screens/padel_screen/matches_list.dart';
 
 class UpComingMatches extends StatelessWidget {
-  const UpComingMatches({super.key});
+  const UpComingMatches({
+    super.key,
+    this.isPadelScreen = true,
+  });
+
+  final bool isPadelScreen;
 
   @override
   Widget build(BuildContext context) {
+    // Do Booking model 
+    String username = 'UserName... ';
     bool isBooked = true;
 
     Widget activeCard = SizedBox(
@@ -92,7 +100,7 @@ class UpComingMatches extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                'UserName... ',
+                username,
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onPrimary,
                   fontSize: 24,
@@ -163,41 +171,52 @@ class UpComingMatches extends StatelessWidget {
     }
 
     //
-    return Column(
-      children: [
-        GestureDetector(
-          onTap: () {},
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return isPadelScreen
+        ? Column(
             children: [
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  'Upcoming Matches',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 18,
-                  ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (ctx) {
+                        return const MatchesListScreen();
+                      },
+                    ),
+                  );
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        'Upcoming Matches',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 4, horizontal: 8),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: const Color.fromARGB(48, 158, 158, 158),
+                      ),
+                      child: const Text(
+                        'All',
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 109, 109, 109),
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               ),
-              Container(
-                padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: const Color.fromARGB(48, 158, 158, 158),
-                ),
-                child: const Text(
-                  'All',
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 109, 109, 109),
-                  ),
-                ),
-              )
+              activeCard,
             ],
-          ),
-        ),
-        activeCard,
-      ],
-    );
+          )
+        : activeCard;
   }
 }

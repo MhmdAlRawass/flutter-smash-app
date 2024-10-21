@@ -28,6 +28,12 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<!-- For location access permission -->
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app requires access to your location to show maps.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This app requires access to your location to show maps.</string>
+
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

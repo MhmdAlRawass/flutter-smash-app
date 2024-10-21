@@ -14,7 +14,7 @@ class ImageSlider extends StatelessWidget {
 
     return CarouselSlider(
       options: CarouselOptions(
-        height: 250,
+        height: 220,
         autoPlay: true,
         enlargeCenterPage: true,
         aspectRatio: 16 / 9,
@@ -22,28 +22,25 @@ class ImageSlider extends StatelessWidget {
         autoPlayAnimationDuration: const Duration(milliseconds: 1000),
         autoPlayCurve: Curves.fastOutSlowIn,
         enableInfiniteScroll: true,
-        viewportFraction: 0.9,
+        viewportFraction: 1,
       ),
       items: imageList.map((image) {
         return Builder(
           builder: (BuildContext context) {
             return Container(
               width: MediaQuery.of(context).size.width, // Full-width slider
-              margin: const EdgeInsets.symmetric(
-                horizontal: 5.0,
-                vertical: 8,
-              ),
+
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15.0),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.3),
-                    spreadRadius: 3,
-                    blurRadius: 8,
+                // boxShadow: [
+                //   BoxShadow(
+                //     color: Colors.black.withOpacity(0.3),
+                //     spreadRadius: 3,
+                //     blurRadius: 8,
 
-                    offset: const Offset(0, 3), // Shadow positioning
-                  ),
-                ],
+                //     offset: const Offset(0, 3), // Shadow positioning
+                //   ),
+                // ],
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(15.0), // Rounded corners

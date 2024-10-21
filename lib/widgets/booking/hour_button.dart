@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class HourButton extends StatefulWidget {
-  const HourButton({
+class CustomHourSelection extends StatefulWidget {
+  const CustomHourSelection({
     super.key,
     required this.startTime,
-    required this.bookingDuration,
+    required this.onDurationSelected,
   });
 
   final DateTime startTime;
-  final void Function(int value) bookingDuration;
+  final void Function(int value) onDurationSelected;
 
   @override
-  State<HourButton> createState() => _HourButtonState();
+  State<CustomHourSelection> createState() => _CustomHourSelectionState();
 }
 
-class _HourButtonState extends State<HourButton> {
+class _CustomHourSelectionState extends State<CustomHourSelection> {
   int _selectedIndex = 0;
   final List<int> durations = [60, 90, 120];
 
@@ -30,122 +30,119 @@ class _HourButtonState extends State<HourButton> {
         startTime.add(Duration(minutes: durations[_selectedIndex]));
     String endTimeFormatted = DateFormat('jm').format(endTime);
 
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
+    return Container(
+      decoration: BoxDecoration(
+        color: theme.colorScheme.background,
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
+      ),
+      padding: const EdgeInsets.all(20),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Header
           Text(
-            'Your Time of Playing',
-            style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: theme.colorScheme.onSurface,
-                ),
-          ),
-          const SizedBox(height: 12),
-
-          // ChoiceChip to display start and end time
-          AnimatedSwitcher(
-            duration: const Duration(milliseconds: 500),
-            transitionBuilder: (Widget child, Animation<double> animation) {
-              return ScaleTransition(scale: animation, child: child);
-            },
-            child: ChoiceChip(
-              avatar: const Icon(
-                Icons.timelapse,
-                color: Colors.greenAccent,
-              ),
-              key: ValueKey<String>(endTimeFormatted),
-              showCheckmark: false,
-              selectedColor:
-                  Theme.of(context).colorScheme.primary.withOpacity(0.8),
-              label: Text(
-                '$startTimeFormatted - $endTimeFormatted',
-              ),
-              labelStyle: theme.textTheme.bodyLarge!.copyWith(
-                color: theme.colorScheme.onPrimary,
-              ),
-              selected: true,
+            'Select Your Time Slot',
+            style: theme.textTheme.titleLarge!.copyWith(
+              fontWeight: FontWeight.bold,
             ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Text(
-            'Select Session Duration',
-            style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: theme.colorScheme.onSurface,
-                ),
           ),
           const SizedBox(height: 20),
 
-          ToggleButtons(
-            isSelected: [
-              for (int i = 0; i < durations.length; i++) i == _selectedIndex
-            ],
-            fillColor: theme.colorScheme.primary.withOpacity(0.9),
-            selectedColor: theme.colorScheme.onPrimary,
-            borderRadius: BorderRadius.circular(20),
-            textStyle: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
+          // Display selected time
+          Container(
+            margin: const EdgeInsets.symmetric(vertical: 10),
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: theme.colorScheme.primary.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: theme.colorScheme.primary),
             ),
-            borderColor: Colors.grey.shade400,
-            selectedBorderColor: theme.colorScheme.primary,
-            borderWidth: 1.5,
-            onPressed: (value) {
-              setState(() {
-                _selectedIndex = value;
-              });
-            },
-            children: durations.map((duration) {
-              return Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                child: Text(
-                  '$duration min',
-                  style: TextStyle(
-                    color: _selectedIndex == durations.indexOf(duration)
-                        ? theme.colorScheme.onPrimary
-                        : theme.colorScheme.onSurface.withOpacity(0.8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  '$startTimeFormatted - $endTimeFormatted',
+                  style: theme.textTheme.titleLarge,
+                ),
+                const Icon(
+                  Icons.timelapse,
+                  color: Colors.greenAccent,
+                ),
+              ],
+            ),
+          ),
+
+          const SizedBox(height: 20),
+          Text(
+            'Choose Session Duration',
+            style: theme.textTheme.bodyMedium!.copyWith(
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(height: 12),
+
+          // Card-based Toggle Buttons
+          Wrap(
+            spacing: 12,
+            children: List.generate(durations.length, (index) {
+              return GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _selectedIndex = index;
+                  });
+                },
+                child: Card(
+                  color: _selectedIndex == index
+                      ? theme.colorScheme.primary
+                      : theme.colorScheme.surface,
+                  elevation: 4,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 12,
+                      horizontal: 20,
+                    ),
+                    child: Text(
+                      '${durations[index]} min',
+                      style: TextStyle(
+                        color: _selectedIndex == index
+                            ? theme.colorScheme.onPrimary
+                            : theme.colorScheme.onSurface,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ),
               );
-            }).toList(),
+            }),
           ),
-          const SizedBox(
-            height: 30,
-          ),
+
+          const SizedBox(height: 30),
+
+          // Continue button
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                enableFeedback: false,
-                backgroundColor:
-                    Theme.of(context).colorScheme.primary.withOpacity(0.8),
-                foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                fixedSize: const Size(
-                  double.infinity,
-                  50,
-                ),
-              ).copyWith(
-                overlayColor: WidgetStateProperty.all(
-                  Theme.of(context).colorScheme.onPrimary,
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                backgroundColor: theme.colorScheme.primary,
+                foregroundColor: theme.colorScheme.onPrimary,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
                 ),
               ),
               onPressed: () {
                 Navigator.of(context).pop();
-                widget.bookingDuration(durations[_selectedIndex]);
+                widget.onDurationSelected(durations[_selectedIndex]);
               },
               child: const Text(
                 'Continue',
-                style: TextStyle(
-                  fontSize: 18,
-                ),
+                style: TextStyle(fontSize: 18),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

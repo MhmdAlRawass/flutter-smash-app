@@ -20,21 +20,24 @@ class Location extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double latitude = 33.583511;
+    double longitude = 35.387466;
+
     return GestureDetector(
       onTap: () async {
         try {
-          await _openMapForDirections(33.5630, 35.3688);
-          print('Location Opened');
+          await _openMapForDirections(latitude, longitude);
         } catch (e) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Could not open the map: $e')),
+            const SnackBar(
+              content: Text('An error occurred when opening the map!'),
+            ),
           );
         }
       },
       child: Container(
         height: 250,
         width: double.infinity,
-        // margin: const EdgeInsets.all(12.0),
         decoration: BoxDecoration(
           color: Colors.white,
           border: Border.all(
@@ -56,23 +59,22 @@ class Location extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             child: IgnorePointer(
               child: FlutterMap(
-                options: const MapOptions(
-                  initialCenter: LatLng(33.5630, 35.3688),
-                  initialZoom: 13,
-                  interactionOptions: InteractionOptions(
+                options: MapOptions(
+                  initialCenter: LatLng(latitude, longitude),
+                  initialZoom: 17,
+                  interactionOptions: const InteractionOptions(
                     flags: 0,
                   ),
                 ),
                 children: [
                   TileLayer(
                     urlTemplate:
-                        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                    subdomains: const ['a', 'b', 'c'],
+                        'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                   ),
-                  const MarkerLayer(
+                  MarkerLayer(
                     markers: [
                       Marker(
-                        point: LatLng(33.5630, 35.3688),
+                        point: LatLng(latitude, longitude),
                         width: 80,
                         height: 80,
                         child: const Icon(

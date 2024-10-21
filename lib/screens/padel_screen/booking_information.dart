@@ -12,6 +12,7 @@ class BookingInformation extends StatelessWidget {
         child: TabsAppBar(
           page: 0,
           onPressedBackward: () {},
+          onPressedDrawer: () {},
         ),
       ),
       body: Padding(
@@ -150,7 +151,7 @@ Widget buildActionButton(
   // Calculate button size based on screen width
   double screenWidth = MediaQuery.of(context).size.width;
   double buttonWidth =
-      screenWidth * 0.25; // Adjust width dynamically based on screen size
+      screenWidth * 0.28; // Adjust width dynamically based on screen size
   double buttonHeight =
       buttonWidth * 0.67; // Maintain aspect ratio for the button
 

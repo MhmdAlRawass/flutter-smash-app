@@ -173,7 +173,7 @@ class _CourtGridState extends State<CourtGrid> with TickerProviderStateMixin {
                     bool isBooked = bookedSlots.contains(slot);
                     return SizedBox(
                       width: (MediaQuery.of(context).size.width / 3) -
-                          28, // Adjust width based on screen size and padding
+                          32, // Adjust width based on screen size and padding
                       child: InkWell(
                         borderRadius: BorderRadius.circular(12),
                         onTap: isBooked

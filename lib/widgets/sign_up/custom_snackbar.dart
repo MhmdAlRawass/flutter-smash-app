@@ -10,6 +10,9 @@ class FadeInSnackbar extends StatefulWidget {
   final String message;
   final bool isError;
 
+  
+  
+
   @override
   State<StatefulWidget> createState() => _FadeInSnackbarState();
 }
